@@ -33,7 +33,7 @@ int layout[9][9] = {               //layout grid for characters
   {'a',0xC1,'s','d','f','g','h','j','k'},
   {'z',129,'x','c','v','b','n','m',','},
   {0x83,0x80,0x82,'3','4',' ','6','7',0x86},
-  {'~','9','-','=',0xB2,0xD1,0xD2,'7',0xD3},
+  {'0','9','-','=',0xB2,0xD1,0xD2,'7',0xD3},
   {'p','o','[',']','\\',0xD4,0xD5 ,'7',0xD6},
   {';','l','\'',0xB0,0xD8 ,0xD9 ,0xD7,'7','\353'},
   {'/','.','2',0x85,'4','5','6','7','8'},
@@ -57,8 +57,6 @@ void setup(){
     pinMode(inputs[i],INPUT_PULLUP);
   }
   
-  Serial.begin(9600);               //establishing Serial link and initializing keyboard
-  Serial.println("Connected");
   Keyboard.begin();
 
   //encoder = new ClickEncoder(16, 14, 15); //initializing the encoder
@@ -95,11 +93,6 @@ void loop() {
 
 //if a key is pressed, this Funtion is called and outputs to serial the key location, it also sends the keystroke if not already done so
 void keyPressed(int row, int col){
-  Serial.println("Output: "); 
-  Serial.println(outputs[row]);
-  Serial.println(" Input: ");
-  Serial.println(inputs[col]);
-
   if(keyDown[row][col]==0){         //if the function is called for the first time for this key
     Keyboard.press(layout[row][col]);
   }
@@ -127,13 +120,9 @@ void checkEncoder(){
   if (encoderValue != encoderLast) {
     encoderLast = encoderValue;
     if (encoderValue == 1){
-      Serial.print("Encoder Value: ");
-      Serial.println(encoderValue);
       Keyboard.write(lEncoderChar);
     }
     else if (encoderValue == -1){
-      Serial.print("Encoder Value: ");
-      Serial.println(encoderValue);
       Keyboard.write(rEncoderChar);
     }
   }
@@ -147,11 +136,9 @@ void checkEncoder(){
       VERBOSECASE(ClickEncoder::Held)
       VERBOSECASE(ClickEncoder::Released)
       case ClickEncoder::Clicked:
-          Serial.println("ClickEncoder::Clicked");
           Keyboard.write(pushEncoderChar);
         break;
       case ClickEncoder::DoubleClicked:
-          Serial.println("ClickEncoder::Clicked");
           Keyboard.write(doubleEncoderChar);
         break;
     }
