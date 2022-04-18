@@ -28,7 +28,7 @@ byte outputs[] = {9,10,16,14,15,18,19,20,21};
 const int outCount = sizeof(outputs)/sizeof(outputs[0]);
 
 int layout[9][9] = {               //layout grid for characters
-  {'1','~','2','3','4','5','6','7','8'},
+  {'1','`','2','3','4','5','6','7','8'},
   {'q',0xB3,'w','e','r','t','y','u','i'},
   {'a',0xC1,'s','d','f','g','h','j','k'},
   {'z',129,'x','c','v','b','n','m',','},
@@ -36,7 +36,7 @@ int layout[9][9] = {               //layout grid for characters
   {'0','9','-','=',0xB2,0xD1,0xD2,'7',0xD3},
   {'p','o','[',']','\\',0xD4,0xD5 ,'7',0xD6},
   {';','l','\'',0xB0,0xD8 ,0xD9 ,0xD7,'7','\353'},
-  {'/','.','2',0x85,'4','5','6','7','8'},
+  {'/','.','2',0x85,'4', 0xDA,'6','7','8'},
 };
 
 char lEncoderChar = 'l';            //characters to be sent if encoder is manipulated
